@@ -1,0 +1,82 @@
+@use "../../../../styles/settings.module.scss" as settings;
+
+.main {
+    padding: 10px;
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        li {
+            padding: 5px 1%;
+            margin-top: 3%;
+            border-radius: 5px;
+            border: 1px solid black;
+            min-width: 70vw;
+            background-color: white;
+
+            .header {
+                color: #3b3b3bd5;
+                display: flex;
+                justify-content: center;
+                padding-bottom: 5px;
+                border-bottom: 1px solid gray;
+                font-weight: 500;
+                gap: 1em;
+
+                .title {
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                    white-space: normal;
+                    flex: 1;
+                }
+
+                button {
+                    color: white;
+                    border: none;
+                    padding: 5px;
+                    border-radius: 5px;
+                    cursor: pointer;
+
+                    &:hover {
+                        filter: brightness(0.9);
+                        border-radius: 7px;
+                    }
+
+                }
+
+                .btn_publish {
+                    background-color: #6E2BF3;
+
+                    &:hover {
+                        filter: brightness(0.9);
+                    }
+                }
+
+                .btn_hide {
+                    background-color: #db3434;
+                    color: white;
+
+                    &:hover {
+                        filter: brightness(0.9);
+                    }
+                }
+
+            }
+
+            small {
+                font-size: small;
+                color: gray;
+                display: flex;
+                justify-content: end;
+            }
+        }
+    }
+
+}
+
+.context {
+    padding: 5px;
+}
