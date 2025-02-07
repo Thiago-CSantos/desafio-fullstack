@@ -28,6 +28,10 @@ export default function Login() {
         setShowPassword(!showPassword);
     }
 
+    const signUp = () => {
+        router.push("/signup");
+    }
+
     const login = async (data: FormType) => {
         const { email, password } = data;
 
@@ -86,8 +90,7 @@ export default function Login() {
                 <input className={styles.login} type="submit" value="Login" />
 
                 <footer className={styles.footer}>
-                    <span>Sign Up</span>
-                    <span>Forgot Password?</span>
+                    <span onClick={signUp}>Sign Up</span>
                 </footer>
             </main>
         </form>

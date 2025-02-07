@@ -1,0 +1,146 @@
+@use "../../../styles/settings.module.scss" as settings;
+
+$p: #F1F7FE;
+$s: #707274;
+
+@mixin screen {
+  background: $p;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  border-radius: 30px;
+  box-shadow: 0 0 2em #7986cb;
+}
+
+body {
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e7e9ec;
+  height: 100vh;
+}
+
+.screen1 {
+  @include screen;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    color: settings.$logo;
+    margin-top: -0.5em;
+  }
+
+  .name {
+    background-color: #ffffff;
+    box-shadow: 0 0 2em #7986cb;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border-radius: 20px;
+    color: $s;
+
+    input {
+      outline: none;
+      border: none;
+      color: #2b2a2a;
+      font-size: 0.9em;
+    }
+
+    .section-name{
+      display: flex;
+      gap: 0.5em;
+    }
+
+  }
+
+  .email {
+    background-color: #ffffff;
+    box-shadow: 0 0 2em #7986cb;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border-radius: 20px;
+    color: $s;
+
+    input {
+      outline: none;
+      border: none;
+      color: #2b2a2a;
+      font-size: 0.9em;
+    }
+
+    .section-email {
+      display: flex;
+      gap: 0.5em;
+    }
+
+    .icon-email {
+      color: #7986cb;
+    }
+  }
+
+  .password {
+    background-color: #ffffff;
+    box-shadow: 0 0 2em #7986cb;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border-radius: 20px;
+    color: $s;
+
+    input {
+      outline: none;
+      border: none;
+      color: #2b2a2a;
+      font-size: 0.9em;
+    }
+
+    .section-password {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5em;
+    }
+
+    .show-hide {
+      border: none;
+      cursor: pointer;
+      color: $s;
+      background-color: transparent;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .icon-password {
+      color: #7986cb;
+    }
+  }
+
+  .login {
+    padding: 1em;
+    background-color: #3E4684;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 0.7em;
+    color: $s;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+}

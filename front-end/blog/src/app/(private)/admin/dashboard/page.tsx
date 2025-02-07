@@ -22,7 +22,9 @@ export default function Dashboard() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [publicationToDelete, setPublicationToDelete] = useState<Publication | null>(null);
 
+
     useEffect(() => {
+
         async function fetchData() {
 
             if (!session) {
