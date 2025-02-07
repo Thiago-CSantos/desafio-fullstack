@@ -20,7 +20,7 @@ type FormType = z.infer<typeof schemaForm>;
 export default function Create() {
 
     const [content, setContent] = useState<string>("");
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormType>({ resolver: zodResolver(schemaForm) });
+    const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<FormType>({ resolver: zodResolver(schemaForm) });
     const router = useRouter();
     const config = {
         readonly: false,
@@ -36,7 +36,6 @@ export default function Create() {
         try {
             const { title, content } = data;
             const token = localStorage.getItem("token");
-            console.log(token);
 
             if (!token) {
                 throw new Error("Token is null");
@@ -51,9 +50,15 @@ export default function Create() {
                 },
                 body: JSON.stringify({ title, content, id_user: decoded.user_id }),
             });
-            console.log(res);
+            
             if (res.status === 401) {
                 return router.replace("/login");
+            }
+
+            if (res.status === 201) {
+                setContent("");
+                reset();
+                return alert("Publication created successfully");
             }
 
         } catch (error) {
@@ -65,7 +70,7 @@ export default function Create() {
 
     return (
         <>
-            <Navbar />
+            <Navbar isLoggedIn={true} />
             <main className={styles.main}>
                 <div className={styles.container}>
                     <h2>Create Publication</h2>

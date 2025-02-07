@@ -86,29 +86,31 @@ export default function Publish() {
 
     return (
         <>
-            <Navbar />
-            <main className={styles.main}>
-                <ul>
-                    {data.length > 0 ? (
-                        data.map((x: Publication) => (
-                            <li key={x.id}>
-                                <div className={styles.header}>
-                                    <h3 className={styles.title}>{x.title}</h3>
-                                    {!x.is_published ? (
-                                        <button onClick={() => handlePublish(x)} className={styles.btn_publish}>Publish</button>
-                                    ) : (
-                                        <button onClick={() => handlePublish(x)} className={styles.btn_hide}>Hide</button>
-                                    )}
-                                </div>
-                                <p dangerouslySetInnerHTML={{ __html: x.content }} className={styles.context}></p>
-                                <small>Created in: {new Date(x.created_at).toLocaleString()}</small>
-                            </li>
-                        ))
-                    ) : (
-                        <p>No publications found.</p>
-                    )}
-                </ul>
-            </main>
+            <Navbar isLoggedIn={true} />
+            <div className={styles.container}>
+                <main className={styles.main}>
+                    <ul>
+                        {data.length > 0 ? (
+                            data.map((x: Publication) => (
+                                <li key={x.id}>
+                                    <div className={styles.header}>
+                                        <h3 className={styles.title}>{x.title}</h3>
+                                        {!x.is_published ? (
+                                            <button onClick={() => handlePublish(x)} className={styles.btn_publish}>Publish</button>
+                                        ) : (
+                                            <button onClick={() => handlePublish(x)} className={styles.btn_hide}>Hide</button>
+                                        )}
+                                    </div>
+                                    <p dangerouslySetInnerHTML={{ __html: x.content }} className={styles.context}></p>
+                                    <small>Created in: {new Date(x.created_at).toLocaleString()}</small>
+                                </li>
+                            ))
+                        ) : (
+                            <p>No publications found.</p>
+                        )}
+                    </ul>
+                </main>
+            </div>
         </>
     );
 

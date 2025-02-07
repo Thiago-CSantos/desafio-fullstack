@@ -60,8 +60,6 @@ export default function Login() {
     return (
 
         <div className={styles.container}>
-
-
             <form onSubmit={handleSubmit(login)}>
                 <main className={styles.screen1}>
                     <div className={styles.logo}>
@@ -73,24 +71,23 @@ export default function Login() {
                         <div className={styles["section-email"]}>
                             <MdOutlineMail className={styles["icon-email"]} />
                             <input type="email" placeholder="Email" {...register("email")} />
-                            {errors.email && <span>{errors.email.message}</span>}
                         </div>
-
                     </div>
-
+                    {errors.email && <span className={styles.error}>{errors.email.message}</span>}
                     <div className={styles.password}>
                         <label htmlFor="password">Password</label>
                         <div className={styles["section-password"]}>
                             <FaLock className={styles["icon-password"]} />
                             <input type={showPassword ? "text" : "password"}
                                 placeholder="Password" {...register("password")} />
-                            {errors.password && <span>{errors.password.message}</span>}
+                            
                             <button className={styles["show-hide"]}
                                 onClick={togglePassword}>
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </button>
                         </div>
                     </div>
+                    {errors.password && <span className={styles.error}>{errors.password.message}</span>}
 
                     <input className={styles.login} type="submit" value="Login" />
 

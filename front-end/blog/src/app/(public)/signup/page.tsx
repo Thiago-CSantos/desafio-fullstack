@@ -39,7 +39,7 @@ export default function SignUp() {
 
         const { name, email, password, userType } = data;
         let isAdmin = false;
-        if(userType === "admin") {
+        if (userType === "admin") {
             isAdmin = true;
         }
 
@@ -59,82 +59,91 @@ export default function SignUp() {
     };
 
     return (
-        <form onSubmit={handleSubmit(signUp)}>
-            <main className={styles.screen1}>
-                <div className={styles.logo}>
-                    <h1>BlogPay - Sign Up</h1>
-                </div>
+        <>
+            <div className={styles.container}>
+                <form onSubmit={handleSubmit(signUp)} className={styles.form}>
+                    <main className={styles.screen1}>
+                        <div className={styles.logo}>
+                            <h1>BlogPay - Sign Up</h1>
+                        </div>
 
-                <div className={styles.name}>
-                    <label htmlFor="name">Name</label>
-                    <div className={styles["section-name"]}>
-                        <FaUser className={styles["icon-name"]} />
-                        <input type="text" placeholder="Name" {...register("name")} />
-                        {errors.name && <span>{errors.name.message}</span>}
-                    </div>
-                </div>
+                        <div className={styles.name}>
+                            <label htmlFor="name">Name</label>
+                            <div className={styles["section-name"]}>
+                                <FaUser className={styles["icon-name"]} />
+                                <input type="text" placeholder="Name" {...register("name")} />
+                            </div>
+                        </div>
 
-                <div className={styles.email}>
-                    <label htmlFor="email">Email Address</label>
-                    <div className={styles["section-email"]}>
-                        <MdOutlineMail className={styles["icon-email"]} />
-                        <input type="email" placeholder="Email" {...register("email")} />
-                        {errors.email && <span>{errors.email.message}</span>}
-                    </div>
-                </div>
+                        {errors.name && <span className={styles.error}>{errors.name.message}</span>}
 
-                <div className={styles.password}>
-                    <label htmlFor="password">Password</label>
-                    <div className={styles["section-password"]}>
-                        <FaLock className={styles["icon-password"]} />
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            placeholder="Password"
-                            {...register("password")}
-                        />
-                        {errors.password && <span>{errors.password.message}</span>}
-                        <button className={styles["show-hide"]} onClick={togglePassword}>
-                            {showPassword ? <FaEyeSlash /> : <FaEye />}
-                        </button>
-                    </div>
-                </div>
+                        <div className={styles.email}>
+                            <label htmlFor="email">Email Address</label>
+                            <div className={styles["section-email"]}>
+                                <MdOutlineMail className={styles["icon-email"]} />
+                                <input type="email" placeholder="Email" {...register("email")} />
+                            </div>
+                        </div>
 
-                <div className={styles.password}>
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <div className={styles["section-password"]}>
-                        <FaLock className={styles["icon-password"]} />
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            placeholder="Confirm Password"
-                            {...register("confirmPassword")}
-                        />
-                        {errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
-                        <button className={styles["show-hide"]} onClick={togglePassword}>
-                            {showPassword ? <FaEyeSlash /> : <FaEye />}
-                        </button>
-                    </div>
-                </div>
+                        {errors.email && <span className={styles.error}>{errors.email.message}</span>}
 
-                <div className={styles.userType}>
-                    <div className={styles["radio-section"]}>
-                        <label>
-                            <input type="radio" {...register("userType")} value="admin" />
-                            Admin
-                        </label>
-                        <label>
-                            <input type="radio" {...register("userType")} value="user" />
-                            Não Admin
-                        </label>
-                    </div>
-                    {errors.userType && <span>{errors.userType.message}</span>}
-                </div>
+                        <div className={styles.password}>
+                            <label htmlFor="password">Password</label>
+                            <div className={styles["section-password"]}>
+                                <FaLock className={styles["icon-password"]} />
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Password"
+                                    {...register("password")}
+                                />
 
-                <input className={styles.login} type="submit" value="Sign Up" />
+                                <button className={styles["show-hide"]} onClick={togglePassword}>
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </button>
+                            </div>
+                        </div>
 
-                <footer className={styles.footer}>
-                    <span onClick={() => router.replace("/login")}>Already have an account? Login</span>
-                </footer>
-            </main>
-        </form>
+                        {errors.password && <span className={styles.error}>{errors.password.message}</span>}
+
+                        <div className={styles.password}>
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <div className={styles["section-password"]}>
+                                <FaLock className={styles["icon-password"]} />
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Confirm Password"
+                                    {...register("confirmPassword")}
+                                />
+                                <button className={styles["show-hide"]} onClick={togglePassword}>
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </button>
+                            </div>
+                        </div>
+
+                        {errors.confirmPassword && <span className={styles.error}>{errors.confirmPassword.message}</span>}
+
+                        <div className={styles.userType}>
+                            <div className={styles["radio-section"]}>
+                                <label>
+                                    <input type="radio" {...register("userType")} value="admin" />
+                                    Admin
+                                </label>
+                                <label>
+                                    <input type="radio" {...register("userType")} value="user" />
+                                    Not Admin
+                                </label>
+                            </div>
+                            {errors.userType && <span className={styles.error}>{errors.userType.message}</span>}
+                        </div>
+
+                        <input className={styles.login} type="submit" value="Sign Up" />
+
+                        <footer className={styles.footer}>
+                            <span onClick={() => router.replace("/login")}>Already have an account? Login</span>
+                        </footer>
+                    </main>
+                </form>
+            </div>
+        </>
     );
 }

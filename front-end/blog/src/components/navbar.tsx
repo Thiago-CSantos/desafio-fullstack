@@ -3,7 +3,7 @@ import styles from "../styles/navbar.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+const Navbar = ({ isLoggedIn=false }: { isLoggedIn: boolean }) => {
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -21,9 +21,9 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         localStorage.removeItem("token");
         localStorage.removeItem("refresh_token");
 
-        router.replace("/login");
+        return router.replace("/login");
       }
-      router.replace("/login");
+      return router.replace("/login");
 
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
@@ -35,13 +35,13 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       <div className={styles.logo}>BlogPay</div>
       <ul className={styles.navLinks}>
         <li>
-          {isLoggedIn ?? <Link href="/admin/create">Create</Link>}
+          {isLoggedIn && <Link href="/admin/create">Create</Link>}
         </li>
         <li>
-          {isLoggedIn ?? <Link href="/admin/dashboard">Dashboard</Link>}
+          {isLoggedIn && <Link href="/admin/dashboard">Dashboard</Link>}
         </li>
         <li>
-          {isLoggedIn ?? <Link href="/admin/publish">Publish</Link>}
+          {isLoggedIn && <Link href="/admin/publish">Publish</Link>}
         </li>
         <li>
           <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>

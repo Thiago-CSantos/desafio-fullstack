@@ -92,7 +92,7 @@ export default function Dashboard() {
 
     return (
         <>
-            <Navbar />
+            <Navbar isLoggedIn={true} />
             <main className={styles.main}>
                 <ul>
                     {data.length > 0 ? (

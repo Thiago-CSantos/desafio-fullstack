@@ -20,6 +20,7 @@ $s: #707274;
     align-items: center;
     background: #e7e9ec;
     height: 100vh;
+    width: 100%;
 }
 
 .screen1 {
@@ -117,5 +118,11 @@ $s: #707274;
             cursor: pointer;
         }
     }
+
+    .error{
+        color: red;
+        font-size: 0.8em;
+        margin-left: 10px;
+      }
 
 }

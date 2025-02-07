@@ -51,7 +51,7 @@ export default function Blog() {
 
     return (
         <>
-            <Navbar isLoggedIn={true}/>
+            <Navbar isLoggedIn={false} />
             <main className={styles.main}>
                 <div className={styles.container}>
                     <h1>Dashboard</h1>
