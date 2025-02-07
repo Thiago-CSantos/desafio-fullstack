@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'blogpay',
         'USER': 'postgres',
         'PASSWORD': 'root',
-        'HOST': 'localhost', # db - para usar com docker-compose
+        'HOST': 'db', # db - para usar com docker-compose
         'PORT': '5432',
     }
 }

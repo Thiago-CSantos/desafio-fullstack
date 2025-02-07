@@ -53,13 +53,14 @@ const nextAuthOptions: NextAuthOptions = {
                         },
                         body: JSON.stringify({ email, password })
                     });
-
+                    
                     if (!r.ok) {
                         throw new Error("Falha na autenticação.");
                     }
                     const res = await r.json();
+                    
                     const decoded = jwtDecode<CustomJwtPayload>(res.access);
-
+                    
                     return {
                         id: decoded.jti || '',
                         accessToken: res.access,

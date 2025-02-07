@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import styles from "../styles/navbar.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,6 +9,7 @@ const Navbar = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const handleLogout = async () => {
     try {
       const refreshToken = localStorage.getItem("refresh_token");
+      await signOut({ redirect: false });
 
       if (refreshToken) {
         const res = await fetch("http://localhost:8000/logout/", {
