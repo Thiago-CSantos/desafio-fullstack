@@ -4,6 +4,10 @@ import { jwtDecode } from "jwt-decode";
 import { DecodedToken } from "./utils/decodeda_token_jwt.ts";
 
 export async function middleware(req: NextRequest) {
+
+    console.log(req);
+    
+
     const token = await getToken({ req, secret: process.env.AUTH_SECRET });
 
     if (!token) {

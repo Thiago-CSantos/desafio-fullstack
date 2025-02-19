@@ -5,7 +5,7 @@ import React, { FormEvent, useState } from "react";
 import { MdOutlineMail } from 'react-icons/md';
 import { FaEye, FaEyeSlash, FaLock } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,22 +34,21 @@ export default function Login() {
 
     const login = async (data: FormType) => {
         const { email, password } = data;
-        
-        // await signOut({ redirect: false });
+
 
         await signIn("credentials", {
             email,
             password,
             redirect: false
         });
-        
+
         const session = await fetch("/api/auth/session").then(res => res.json());
-        
+
         const decoded: DecodedToken = jwtDecode<DecodedToken>(session?.user?.accessToken);
 
         localStorage.setItem("token", session?.user?.accessToken);
         localStorage.setItem("refresh_token", session?.user?.refresh);
-        
+
         if (decoded.is_admin) {
             return router.replace("/admin/dashboard");
         }
@@ -80,7 +79,7 @@ export default function Login() {
                             <FaLock className={styles["icon-password"]} />
                             <input type={showPassword ? "text" : "password"}
                                 placeholder="Password" {...register("password")} />
-                            
+
                             <button className={styles["show-hide"]}
                                 onClick={togglePassword}>
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
